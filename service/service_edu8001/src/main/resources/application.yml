@@ -1,0 +1,44 @@
+# 服务端口
+server:
+  port: 8001
+
+# 服务名
+spring:
+  application:
+    name: service-edu
+  # 环境设置
+  profiles:
+    active: dev
+  # 日期格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # mysql数据库连接
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: mysql://localhost:3306/online?serverTimezone=GMT%2B8
+    username: root
+    password: QQnn2791996@
+    hikari:
+      connection-test-query: SELECT 1
+      connection-timeout: 60000
+      idle-timeout: 500000
+      max-lifetime: 540000
+      maximum-pool-size: 12
+      minimum-idle: 10
+      pool-name: FutureHikariPool
+
+# mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  mapper-locations: classpath:com/github/service/*/mapper/*.xml
+
+  global-config:
+    db-config:
+      # 逻辑删除
+      logic-delete-value: 1
+      logic-not-delete-value: 0
